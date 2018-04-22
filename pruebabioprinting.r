@@ -16,16 +16,38 @@ QueryCount(res)
 res_records <- EUtilsGet(res)
 t <- ArticleTitle(res_records)
 
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+# Información (importante) que se puede obtener:
+# Afiliación de los investigadores
+#af <- Affiliation(res_records)
+# País de afiliación del autor principal
+#cou <- Country(res_records)
+# Texto del abstract
+#abstr <- AbstractText(res_records)
+# Texto del títuloi
+#ArticleTitle(res_records)
+# Año de la publicación
+#YearPubmed(res_records)
+# Contiene las cabeceras mesh  con descriptores y calificadores del artículo
+#mesh(res_records)
+# Número de citas que tiene el artículo en PubMed
+#Cited(res_records)
+# Tipo de publicación
+#PublicationType(res_records)
+# Revista de publicación (nombre corto)
+#journal <- MedlineTA(res_records)
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Por año
 y <- YearPubmed(res_records)
 res_pubs_count<-as.data.frame(table(y))
 
 total <- NULL
-for(i in 1980:2018) {
+for(i in 1950:2018) {
 	peryear <- EUtilsSummary("", type="esearch", db="pubmed", mindate=i, maxdate=i)
 	total[i] <- QueryCount(peryear)
 }
-year <- 1980:2018
+year <- 1950:2018
 total_pubs_count <- as.data.frame(cbind(year,total[year]))
 names(total_pubs_count) <- c("year","Total_publications")
 names(res_pubs_count) <-  c("year","NGS_publications")
