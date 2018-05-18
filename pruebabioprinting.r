@@ -43,11 +43,11 @@ y <- YearPubmed(res_records)
 res_pubs_count<-as.data.frame(table(y))
 
 total <- NULL
-for(i in 1950:2018) {
+for(i in 1900:2018) {
 	peryear <- EUtilsSummary("", type="esearch", db="pubmed", mindate=i, maxdate=i)
 	total[i] <- QueryCount(peryear)
 }
-year <- 1950:2018
+year <- 1900:2018
 total_pubs_count <- as.data.frame(cbind(year,total[year]))
 names(total_pubs_count) <- c("year","Total_publications")
 names(res_pubs_count) <-  c("year","NGS_publications")
